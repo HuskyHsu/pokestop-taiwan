@@ -9,8 +9,7 @@ def get_bbox_sites(lat, lng):
     lat = float(lat)
     lng = float(lng)
 
-    print(lat)
-    print(lng)
+    return lat + lng
 
     headers = {
         "X-Requested-With":"XMLHttpRequest",
