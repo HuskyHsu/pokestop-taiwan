@@ -9,6 +9,9 @@ def get_bbox_sites(lat, lng):
     lat = float(lat)
     lng = float(lng)
 
+    print(lat)
+    print(lng)
+
     headers = {
         "X-Requested-With":"XMLHttpRequest",
         "Referer":"https://www.pokemongomap.info",
@@ -24,6 +27,7 @@ def get_bbox_sites(lat, lng):
 
     r = requests.post("https://www.pokemongomap.info/includes/it77nmsq9.php", data=payload, headers=headers)
 
+    print(r.text)
     return jsonify(r.text)
 
 @app.route("/get_PokeStops/<name>/<lat>/<lng>")
