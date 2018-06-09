@@ -6,10 +6,10 @@ app = Flask(__name__)
 @app.route("/get_bbox_sites/<lat>/<lng>")
 def get_bbox_sites(lat, lng):
 
+    return lat + lng
+
     lat = float(lat)
     lng = float(lng)
-
-    return lat + lng
 
     headers = {
         "X-Requested-With":"XMLHttpRequest",
