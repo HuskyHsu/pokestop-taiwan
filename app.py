@@ -21,12 +21,9 @@ def get_bbox_sites(lat, lng):
         "tolat": lat + 0.001,
         "tolng": lng + 0.001
     }
-
-    return jsonify(payload)
-
+    
     r = requests.post("https://www.pokemongomap.info/includes/it77nmsq9.php", data=payload, headers=headers)
 
-    print(r.text)
     return jsonify(r.text)
 
 @app.route("/get_PokeStops/<name>/<lat>/<lng>")
