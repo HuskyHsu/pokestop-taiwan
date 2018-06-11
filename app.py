@@ -13,7 +13,7 @@ def get_bbox_sites(lat, lng):
     conn = sqlite3.connect('pokestop.db')
     c = conn.cursor()
 
-    data = [row for row in c.execute("select * from pokestop where lat between ? and ? and lng between ? and ?", (lat - 0.001, lat + 0.001, lng - 0.001, lng + 0.001))]
+    data = [{"poke_title": row[2], "poke_lat": float(row[0]), "poke_lng": float(row[1])} for row in c.execute("select * from pokestop where lat between ? and ? and lng between ? and ?", (lat - 0.001, lat + 0.001, lng - 0.001, lng + 0.001))]
 
     return jsonify(data)
 
