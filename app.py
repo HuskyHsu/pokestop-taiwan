@@ -10,10 +10,10 @@ def get_bbox_sites(lat, lng):
     lat = float(lat)
     lng = float(lng)
 
-    conn = sqlite3.connect('pokestop.db')
+    conn = sqlite3.connect('pokestop3.db')
     c = conn.cursor()
 
-    data = [{"poke_title": row[2], "poke_lat": float(row[0]), "poke_lng": float(row[1])} for row in c.execute("select * from pokestop where lat between ? and ? and lng between ? and ?", (lat - 0.001, lat + 0.001, lng - 0.001, lng + 0.001))]
+    data = [{"poke_id": row[0], "poke_title": row[3], "poke_lat": float(row[1]), "poke_lng": float(row[2])} for row in c.execute("select * from pokestop where lat between ? and ? and lng between ? and ?", (lat - 0.001, lat + 0.001, lng - 0.001, lng + 0.001))]
 
     return jsonify(data)
 
