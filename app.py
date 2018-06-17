@@ -4,6 +4,10 @@ import sqlite3
 
 app = Flask(__name__)
 
+@app.route("/")
+def hello():
+    return "Hello World!"
+
 @app.route("/get_bbox_sites/<lat>/<lng>")
 def get_bbox_sites(lat, lng):
 
