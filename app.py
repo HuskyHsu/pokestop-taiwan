@@ -1,8 +1,13 @@
 from flask import Flask, jsonify, Response
+from flask_cors import CORS
 import requests
 import sqlite3
 
 app = Flask(__name__)
+CORS(app, resources={
+    r"/*": {"origins": "*"},
+    r"/*": {"origins": "https://5upergeo.github.io/PMGO-tasks-map"},
+    })
 
 @app.route("/")
 def hello():
