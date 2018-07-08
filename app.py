@@ -6,7 +6,6 @@ import sqlite3
 app = Flask(__name__)
 CORS(app, resources={
     r"/*": {"origins": "*"},
-    r"/*": {"origins": "https://5upergeo.github.io/PMGO-tasks-map"},
     })
 
 @app.route("/")
