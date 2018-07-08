@@ -1,18 +1,17 @@
 from flask import Flask, jsonify, Response
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import requests
 import sqlite3
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {"origins": "*"},
-    })
+CORS(app, support_credentials=True)
 
 @app.route("/")
 def hello():
     return "Hello World!"
 
 @app.route("/get_bbox_sites/<lat>/<lng>")
+@cross_origin(supports_credentials=True)
 def get_bbox_sites(lat, lng):
 
     lat = float(lat)
