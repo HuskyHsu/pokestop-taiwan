@@ -4,14 +4,15 @@ import requests
 import sqlite3
 
 app = Flask(__name__)
-CORS(app, support_credentials=True)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def hello():
     return "Hello World!"
 
 @app.route("/get_bbox_sites/<lat>/<lng>")
-@cross_origin(supports_credentials=True)
+@cross_origin()
 def get_bbox_sites(lat, lng):
 
     lat = float(lat)
