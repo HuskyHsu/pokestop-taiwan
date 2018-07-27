@@ -14,3 +14,16 @@ get http://127.0.0.1:8000/get_bbox_sites/<lat>/<lng>
   ...
 ]
 ```
+
+```
+get http://127.0.0.1:8000/get_sites/<Portal site name>/
+
+[
+  {
+  poke_title: <image_url>,
+  poke_lat: <lat>,
+  poke_lng: <lng>
+  },
+  ...
+]
+```
