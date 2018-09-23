@@ -31,12 +31,13 @@ def get_sites(site_name):
     conn = sqlite3.connect('pokestop.db')
     c = conn.cursor()
 
-    data = ['<tr><td>{}</td><td>{}</td><td><img src="{}" height="200px"></td></tr>'.format(row[1], row[2] + ',' + row[3], row[4]) for row in c.execute("select * from pokestop where name = ?", (site_name,))]
+    data = ['<tr><td>{}</td><td>{}</td><td>{}</td><td><img src="{}" height="200px"></td></tr>'.format(row[1], row[0], row[2] + ',' + row[3], row[4]) for row in c.execute("select * from pokestop where name = ?", (site_name,))]
 
     table_str = '''
     <table border="2">
         <tr>
             <th>名稱</th>
+            <th>ingress ID</th>
             <th>座標</th> 
             <th>照片</th>
         </tr>
@@ -45,7 +46,6 @@ def get_sites(site_name):
     '''.format(''.join(data))
 
     return table_str
-
 
 if __name__ == '__main__':
     app.run(debug=True)
