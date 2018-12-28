@@ -30,7 +30,9 @@ def hello():
 
     outdata = []
     for row in data:
-        outdata.append(row.split('❦'))
+        outdata.append(row.replace("\n", "").split('❦'))
+
+    print(outdata[0])
 
     conn.executemany('INSERT INTO pokestop VALUES (?,?,?,?,?)', outdata[1:])
 
