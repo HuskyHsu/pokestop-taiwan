@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, Response
 from flask_cors import CORS, cross_origin
-import requests
-import sqlite3
+import requests, sqlite3
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -9,6 +8,35 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def hello():
+    with open('inngress_20181210.csv', 'rt', encoding="UTF-8") as fin:
+        data = fin.readlines()
+    
+    conn = sqlite3.connect('pokestop_.db')
+
+    print("Opened database successfully");
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE `pokestop` (
+            `id`	TEXT,
+            `name`	TEXT,
+            `lat`	TEXT,
+            `lng`	TEXT,
+            `image_url`	TEXT
+        );
+    ''')
+    print("Table created successfully");
+
+    conn.commit()
+
+    outdata = []
+    for row in data:
+        outdata.append(row.split('❦'))
+
+    conn.executemany('INSERT INTO pokestop VALUES (?,?,?,?,?)', outdata[1:])
+
+    conn.commit()
+    conn.close()
+
     return "Hello World!"
 
 @app.route("/get_bbox_sites/<lat>/<lng>")
