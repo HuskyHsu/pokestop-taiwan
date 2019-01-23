@@ -8,7 +8,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def hello():
-    with open('inngress_20181210.csv', 'rt', encoding="UTF-8") as fin:
+    with open('inngress_20190123.csv', 'rt', encoding="UTF-8") as fin:
         data = fin.readlines()
     
     conn = sqlite3.connect('pokestop_.db')
